@@ -135,7 +135,7 @@ diff -uprN mysql-8.0.12/storage/innobase/include/trx0trx.ic ../mysql-8.0.12/stor
  
 diff -uprN mysql-8.0.12/storage/innobase/lock/lock0lock.cc ../mysql-8.0.12/storage/innobase/lock/lock0lock.cc
 --- mysql-8.0.12/storage/innobase/lock/lock0lock.cc	2018-06-29 00:18:27.000000000 +0800
-+++ ../mysql-8.0.12/storage/innobase/lock/lock0lock.cc	2018-12-16 13:04:28.000000000 +0800
++++ ../mysql-8.0.12/storage/innobase/lock/lock0lock.cc	2018-12-16 22:44:22.000000000 +0800
 @@ -62,6 +62,7 @@ this program; if not, write to the Free 
  #include "usr0sess.h"
  #include "ut0new.h"
@@ -218,7 +218,7 @@ diff -uprN mysql-8.0.12/storage/innobase/lock/lock0lock.cc ../mysql-8.0.12/stora
 +        for (trx_t *t = UT_LIST_GET_FIRST(tmp_rw_trx_list); t != NULL;
 +             t = UT_LIST_GET_NEXT(trx_list, t)) {
 +            trx_mutex_enter(t);
-+            if(t->in_rw_trx_list==TRUE&&t->state==TRX_STATE_ACTIVE){
++            if(t->state==TRX_STATE_ACTIVE){
 +                if(t->lock.que_state==TRX_QUE_LOCK_WAIT){
 +                    lock_mutex_enter();
 +                    //rollback the transaction
